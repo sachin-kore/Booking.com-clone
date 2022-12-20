@@ -1,0 +1,97 @@
+.searchItem{
+    border: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.searchItem>img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.siDesc{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 2;
+}
+.siTitle{
+    font-size: 20px;
+    color: #0071c2;
+}
+.siTaxiOp{
+    font-size: 12px;
+    background-color: #008009;
+    color: white;
+    width: max-content;
+    padding: 3px;
+    border-radius: 5px;
+}
+.siDistance{
+    font-size: 12px;
+}
+.siSubtitleOp{
+    font-size: 12px;
+    font-weight: bold;
+}
+.siFeatures{
+    font-size: 12px;
+}
+.sicancelOp{
+    font-size: 12px;
+    color: #008009;
+    font-weight: bold;
+}
+.sicancelOpSubTitle{
+    font-size: 12px;
+    color: #008009;
+}
+.siDetails{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.siDetails-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.siDetails-top>p{
+   font-size: 15px;
+   font-weight: bold;
+}
+.siDetails-top>button{
+    font-size: 15px;
+    background-color: #0071c2;
+    color: white;
+    padding: 3px;
+    border: none;
+ }
+ .siamount{
+    font-weight: bold;
+    font-size: 20px;
+ }
+.siDetails-bottom{
+    display: flex;
+    flex-direction: column;
+   align-items: flex-end;
+   gap: 5px;
+}
+.siDetails-bottom>span{
+    font-size: 12px;
+    color: gray;
+}
+.siDetails-bottom>button{
+    background-color: #0071c2;
+    color: white;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    font-weight: bold;
+    cursor: pointer;
+}
