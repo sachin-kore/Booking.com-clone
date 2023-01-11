@@ -1,0 +1,8 @@
+.A--_color_Container{
+    height: 100px;
+    width: 100px;
+   padding: 20px;
+   margin: 20px;
+    border: 1px solid blue;
+    background-color: white;
+}
