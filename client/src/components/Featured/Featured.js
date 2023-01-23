@@ -4,7 +4,7 @@ import './Featured.css';
 
 export const Featured = () => {
 
-    const { data, loading, error } = useFetch("/hotels/countByCity?cities=bangalore,mysore,hydrabad");
+    const { data, loading, error } = useFetch("http://localhost:5000/api/hotels/countByCity?cities=bangalore,mysore,hydrabad");
     return (
         <div className='featured'>
             {loading ? "Loading...." :

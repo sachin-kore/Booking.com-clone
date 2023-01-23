@@ -3,7 +3,7 @@ import './FeaturedPropertyList.css'
 
 export const FeaturedPropertyList = () => {
 
-    const { data, loading, error } = useFetch("/hotels?featured=true&limit=4&min=1&max=500");
+    const { data, loading, error } = useFetch("http://localhost:5000/api/hotels?featured=true&min=1&max=800&limit=5");
     const images = [
         'https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o=',
         'https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg',
