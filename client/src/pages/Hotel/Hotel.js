@@ -5,9 +5,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { MailList } from '../../components/mailList/MailList'
 import { Footer } from '../../components/Footer/Footer'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import useFetch from '../../hooks/useFetch'
+import { SearchContext } from '../../context/SearchContext'
+
+
 
 export const Hotel = () => {
+    const navigate = useLocation()
+    const path = navigate.pathname.split("/")[2];
+
+    const { data, loading, error } = useFetch(`http://localhost:5000/api/hotels/find/${path}`);
+
+
+    const { date, options } = useContext(SearchContext);
+    const MILLISECOND_PER_DAY = 1000 * 60 * 60 * 24;
+    function dayDifference(date1, date2) {
+        const timDiff = Math.abs(date2.getTime() - date1.getTime());
+        const dayDiff = Math.ceil(timDiff / MILLISECOND_PER_DAY);
+        return dayDiff;
+    }
+
+    const days = dayDifference(date[0].endDate, date[0].startDate);
+
 
     const [openslider, setOpenslider] = useState(false)
     const [imageIndexNum, setImageIndexNumr] = useState(0)
@@ -63,13 +84,13 @@ export const Hotel = () => {
                 </div>}
                 <div className='hotelwrapper'>
                     <button className='booknow'>Reserve or Book Now</button>
-                    <h1>Tower Street Apartments</h1>
+                    <h1>{data.name}</h1>
                     <div className='hotellocationDetails'>
                         <FontAwesomeIcon icon={faLocationDot} />
-                        <span>5 Basztowa, Old Town, 33-332 Karkow, Poland</span>
+                        <span>{data.address}</span>
                     </div>
-                    <span className='locationText'>Excellent location -500m from center</span>
-                    <span className='hotelTaxiDetails'>Book a stay over $114 at this property and get free airport taxi</span>
+                    <span className='locationText'>Excellent location -{data.distance}m from center</span>
+                    <span className='hotelTaxiDetails'>Book a stay over ${data.cheapestPrice} at this property and get free airport taxi</span>
                     <div className='hotelImages'>
                         {images.map((photo, i) => (
                             <div className='hotelImageWrapper'>
@@ -79,19 +100,15 @@ export const Hotel = () => {
                     </div>
                     <div className='hotelOtherDetails'>
                         <div className='hotelDetails'>
-                            <h1 className='hotelDetailsheading'>Stay in the heart Karkow</h1>
-                            <span className='hotelDetailsspan'>5.1 km from Brigade Road, FabHotel The Leela Park is set in Bangalore and offers air-conditioned rooms.
-                                This 3-star hotel offers a 24-hour front desk, room service and free WiFi. The property is situated 6.7 km from Chinnaswamy Stadium and 7.3 km from Commercial Street
-                                5.1 km from Brigade Road, FabHotel The Leela Park is set in Bangalore and offers air-conditioned rooms.
-                                This 3-star hotel offers a 24-hour front desk, room service and free WiFi. The property is situated 6.7 km from Chinnaswamy Stadium and 7.3 km from Commercial Street.
-                            </span>
+                            <h1 className='hotelDetailsheading'>{data.title}</h1>
+                            <span className='hotelDetailsspan'>{data.desc}</span>
                         </div>
                         <div className='hotelText'>
-                            <h1>Perfect for a 9-night stay</h1>
+                            <h1>Perfect for a {days}-night stay</h1>
                             <span className='hotelspanText'>5.1 km from Brigade Road, FabHotel The Leela Park is
                                 set in Bangalore and offers
                             </span>
-                            <h2><b>$ 945</b> 9 nights</h2>
+                            <h2><b>${days * data.cheapestPrice * options.room}</b> {days} nights</h2>
                             <button className='booknow1'>Reserve or Book Now</button>
                         </div>
                     </div>
@@ -100,7 +117,6 @@ export const Hotel = () => {
                 <Footer />
 
             </div>
-
         </div>
     )
 }

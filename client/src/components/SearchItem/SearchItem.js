@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom'
 import './SearchItem.css'
 
 export const SearchItem = ({ item }) => {
-
 
     return (
         <div className='searchItem'>
@@ -24,7 +24,9 @@ export const SearchItem = ({ item }) => {
                 <div className='siDetails-bottom'>
                     <p className='siamount'>${item.cheapestPrice}</p>
                     <span>include taxes and fees</span>
-                    <button>See Availability</button>
+                    <Link to={`/hotels/${item._id}`} >
+                        <button className='seeAvailabilitybtn'>See Availability</button>
+                    </Link>
                 </div>
             </div>
         </div>

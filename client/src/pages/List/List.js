@@ -18,7 +18,7 @@ export const List = () => {
     const [max, setMax] = useState(undefined);
 
 
-    const { data, loading, error, refetch } = useFetch("http://localhost:5000/api/hotels?city=bangalore&min=100&max=200");
+    const { data, loading, error, refetch } = useFetch(`http://localhost:5000/api/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
     const handleSearch = () => {
         refetch();
     }
@@ -74,7 +74,7 @@ export const List = () => {
                         {loading ? "Loading..." :
                             <>
                                 {data.map((item) => (
-                                    <SearchItem key={item} item={item} />
+                                    <SearchItem key={item._id} item={item} />
                                 ))}
                             </>
                         }

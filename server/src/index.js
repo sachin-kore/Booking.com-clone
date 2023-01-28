@@ -43,7 +43,6 @@ app.use((err, req, res, next) => {
         message: erroMessage,
         stack: err.stack
     })
-    next();
 })
 
 const port = 5000;
